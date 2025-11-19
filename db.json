@@ -1,0 +1,49 @@
+{
+  "events": [
+    {
+      "id": "e1",
+      "title": "Local Dev Meetup",
+      "description": "Join us for a fun and interactive local developer meetup where we discuss latest web technologies and network with fellow developers.",
+      "location": "Paris",
+      "date": "2025-11-05",
+      "image": "/images/coding-event.jpg",
+      "isFeatured": true
+    },
+    {
+      "id": "e2",
+      "title": "Practice Hackathon",
+      "description": "A 24-hour online hackathon to practice building cool projects with friends and meet new collaborators.",
+      "location": "Remote",
+      "date": "2025-12-12",
+      "image": "/images/coding-event.jpg",
+      "isFeatured": false
+    },
+    {
+      "id": "e3",
+      "title": "Next.js Study Group",
+      "description": "Weekly Next.js study group to go through tutorials, share tips, and build small projects together.",
+      "location": "Online",
+      "date": "2025-11-20",
+      "image": "/images/coding-event.jpg",
+      "isFeatured": true
+    },
+    {
+      "id": "e4",
+      "title": "React Workshop",
+      "description": "Hands-on React workshop for beginners and intermediate developers to build real-world projects.",
+      "location": "London",
+      "date": "2025-12-05",
+      "image": "/images/coding-event.jpg",
+      "isFeatured": true
+    },
+    {
+      "id": "e5",
+      "title": "Frontend Conference 2025",
+      "description": "Annual frontend development conference with talks, networking, and coding sessions.",
+      "location": "Berlin",
+      "date": "2025-12-15",
+      "image": "/images/coding-event.jpg",
+      "isFeatured": false
+    }
+  ]
+}
