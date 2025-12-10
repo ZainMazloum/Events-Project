@@ -1,5 +1,6 @@
+
 import React from "react";
-import EventItem from "./event-item";
+import EventItem from "./EventItem";
 
 export interface EventType {
   id: string;
@@ -15,7 +16,7 @@ interface EventListProps {
 
 const EventList: React.FC<EventListProps> = ({ items }) => {
   return (
-    <ul>
+    <ul className="grid grid-cols-1 gap-8 max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 md:grid-cols-2">
       {items.map((event) => (
         <EventItem
           key={event.id}

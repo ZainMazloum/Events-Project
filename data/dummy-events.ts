@@ -1,4 +1,3 @@
-// 1. Rename the interface for clarity and proper capitalization
 export interface Event {
     id: string;
     title: string;
@@ -8,8 +7,6 @@ export interface Event {
     image: string;
     isFeatured: boolean;
 }
-
-// 2. Define DUMMY_EVENTS as an ARRAY of the Event interface
 export const DUMMY_EVENTS: Event[] = [
     // Your initial event, fixed with correct object syntax
     {
@@ -61,35 +58,3 @@ export const DUMMY_EVENTS: Event[] = [
         isFeatured: false
     }
 ];
-export function getFeaturedEvents(): Event[] {
-    // Returns an array of Event objects that are featured
-    return DUMMY_EVENTS.filter((event) => event.isFeatured);
-}
-
-export function getAllEvents(): Event[] {
-    // Returns the entire array of Event objects
-    return DUMMY_EVENTS;
-}
-
-export function getFilteredEvents(dateFilter: { year: number; month: number }): Event[] {
-    
-    // Destructure the year and month from the argument
-    const { year, month } = dateFilter;
-    
-const filteredEvents: Event[] = DUMMY_EVENTS.filter((event) => {
-        const eventDate = new Date(event.date);
-
-        // Convert event month (0-indexed) and filter month (1-indexed)
-        const eventYear = eventDate.getFullYear();
-        const eventMonth = eventDate.getMonth(); // 0 = Jan, 11 = Dec
-
-        // The logic for filtering months is correct: month - 1 converts the
-        // 1-based input month (e.g., 8 for August) to the 0-based index (7).
-        return eventYear === year && eventMonth === month - 1;
-    });
-
-    return filteredEvents;
-}
-export default function getEventById(id : string){
-    return DUMMY_EVENTS.find((event) => event.id === id)
-}

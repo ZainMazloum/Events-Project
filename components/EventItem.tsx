@@ -1,31 +1,22 @@
-
-import React from "react";
-import Link from "next/link";
-import Image from "next/image"
-// Define the prop types
-interface EventItemProps {
+import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+    interface EventItemProps {
   id: string;
   title: string;
   image: string;
   date: string;
   location: string;
 }
-
-const EventItem: React.FC<EventItemProps> = ({ id, title, image, date, location }) => {
-  // Converts the date string into a human-readable format like "October 19, 2025"
-  const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
+const EventItem : React.FC<EventItemProps> = ({ id, title, image, date, location }) => {
+      const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",
     year: "numeric",
   });
-
-  // Replaces commas in the address with newlines for better readability
-  const formattedAddress = location.replace(/, /g, "\n");
-
-  // Dynamic route for each event
-  const exploreLink = `/events/${id}`;
-
-  return (
+ const formattedAddress = location.replace(/, /g, "\n");
+ const exploreLink = `/events/${id}`
+return (
     <li className="flex flex-col md:flex-row items-center bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
       <Image src={image} alt={title} width={250} height={160} className="w-full md:w-1/3 object-cover h-56 md:h-64" />
       {/* <img
@@ -58,6 +49,6 @@ const EventItem: React.FC<EventItemProps> = ({ id, title, image, date, location 
       </div>
     </li>
   );
-};
+}
 
-export default EventItem;
+export default EventItem

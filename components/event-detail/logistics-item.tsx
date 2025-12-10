@@ -1,7 +1,8 @@
 import React, { ReactNode } from "react";
 
 interface LogisticsItemProps {
-  children: ReactNode;
+  children: React.ReactNode;
+  className?: string;
 }
 
 const LogisticsItem: React.FC<LogisticsItemProps> = ({ children }) => {

@@ -1,65 +1,34 @@
-import { useContext } from 'react';
+import React from 'react'
+import {useContext} from "react"
+import { NotificationData , NotificationContextType , NotificationContext } from '@/store/notification-context'
+const notifications = (props : NotificationData) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const notificationCtx = useContext<NotificationContextType>(NotificationContext);
+    const {title , message , status} = props;
 
-import classes from "./notifications.module.css"
-// NOTE: You must update the path to the TypeScript file for your context
-import NotificationContext, { NotificationContextType } from '../../store/notification-context'; 
-
-// --- 1. Define the Component's Props Interface ---
-
-interface NotificationProps {
-  // Use the union type for status to restrict allowed strings
-  status: string;
-  title: string;
-  message: string;
-}
-
-const Notification = (props: NotificationProps) => {
-  // 2. Use the context with the defined type
-  const notificationCtx = useContext<NotificationContextType>(NotificationContext);
-
-  const { title, message, status } = props;
-
-  let statusClasses = '';
-
-  // Use a switch statement for cleaner conditional logic
-  switch (status) {
+let statusClasses = "";
+switch(status){
     case 'success':
-      statusClasses = classes.success;
+      statusClasses = "bg-green-600";
       break;
     case 'error':
-      statusClasses = classes.error;
+      statusClasses = "bg-orange-600";
       break;
     case 'pending':
-      statusClasses = classes.pending;
+      statusClasses = "bg-blue-600";
       break;
     default:
       // Optionally handle an invalid status gracefully
       statusClasses = ''; 
       break;
-  }
-
-  const activeClasses = `${classes.notification} ${statusClasses}`;
-
+}
+const activeClasses = `fixed bottom-0 left-0 h-20 w-full bg-gray-900 flex justify-between items-center text-white px-[10%] shadow-md shadow-black/20 ${statusClasses}`;
   return (
     <div className={activeClasses} onClick={notificationCtx.hideNotification}>
-      <h2>{title}</h2>
+      <h2 className="m-0 text-xl text-white">{title}</h2>
       <p>{message}</p>
     </div>
-  );
+  )
 }
 
-export default Notification;
-// interface NotificationProps{
-//     title : string,
-//     message : string,
-//     status : string
-// }
-// export default function Notification(props : NotificationProps){
-//     return(
-//         <>
-//         <div>{props.title}</div>
-//         <div>{props.message}</div>
-//         <div>{props.status}</div>
-//         </>
-//     )
-// }
+export default notifications

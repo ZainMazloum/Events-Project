@@ -25,7 +25,7 @@ export default function EventsSearch() {
   }
 
   return (
-    <form onSubmit={submitHandler} className="flex flex-col gap-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+    <form onSubmit={submitHandler} className="flex flex-col gap-4 bg-white p-6 rounded-xl shadow-lg border border-gray-100 max-w-5xl mx-auto">
       <div className="flex gap-6 justify-center">
         <div className="flex flex-col">
           <label htmlFor="year" className="mb-1 text-sm font-medium text-gray-700">Year</label>
@@ -74,3 +74,4 @@ export default function EventsSearch() {
     </form>
   );
 }
+
