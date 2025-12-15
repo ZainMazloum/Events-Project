@@ -12,7 +12,7 @@ const Navbar = () => {
   ];
   return (
     <nav className="bg-black text-white px-6 py-4 flex items-center justify-between mb-6">
-        <Link href="/" className="text-2xl font-bold text-indigo-200 hover:text-indigo-300 transition duration-150">Store</Link>
+        <Link href="/" className="text-2xl font-bold text-indigo-200 hover:text-indigo-300 transition duration-150">Events</Link>
         {/* Desktop links */}
         <ul className='hidden md:flex gap-8 text-sm font-medium'>
             {navLinks.map((link) => {
