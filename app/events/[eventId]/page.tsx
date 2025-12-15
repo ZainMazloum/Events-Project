@@ -1,41 +1,27 @@
-import { getEventByID , getFeaturedEvents } from "@/helpers/api-util";
+export const dynamic = "force-dynamic";
+
+import { getEventByID } from "@/helpers/api-util";
 import EventDetails from "@/components/event-detail/events-detail";
 import { notFound } from "next/navigation";
 import Comments from "@/components/input/comments";
 
+// 1. Update the interface to reflect that params is a Promise
 interface EventPageProps {
-  params: {
-    eventID: string;
-  };
-}
-
-export async function generateMetadata({ params }: EventPageProps) {
-  const eventID = params.eventID;
-  const event = await getEventByID(eventID);
-  if (!event) {
-    return {
-      title: 'Event Not Found',
-      description: 'The requested event could not be located.',
-    };
-  }
-  return {
-    title: event.title,
-    description: event.description,
-  };
-}
-
-// FIXED: Correct param name to match folder [eventID]
-export async function generateStaticParams() {
-  const events = await getFeaturedEvents();
-  const paths = events.map((event) => ({
-    eventID: event.id,   // ✅ must match [eventID] in folder name
-  }));
-  return paths;
+  params: Promise<{
+    eventId: string;
+  }>;
 }
 
 const EventDetail = async ({ params }: EventPageProps) => {
-  const eventID = params.eventID;
-  const event = await getEventByID(eventID);
+  // 2. Await the params before accessing properties
+  const { eventId } = await params;
+
+  if (!eventId) {
+    return notFound();
+  }
+
+  // Use the extracted eventId
+  const event = await getEventByID(eventId);
 
   if (!event) {
     return notFound();

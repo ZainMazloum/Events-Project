@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { MongoClient , ObjectId } from "mongodb";
 export interface Event{
     id:string,
@@ -82,8 +83,17 @@ export async function getEventByID(givenID : string) : Promise<Event | undefined
        client = await MongoClient.connect(MONGODB_URL);
         const db = client.db(DATABASE_NAME);
         const eventsCollection = db.collection(COLLECTION_NAME);
-        const objectId = new ObjectId(givenID);
-        const event = await eventsCollection.findOne({_id : objectId});
+        let event: any = null;
+        // If the givenID is a valid ObjectId, search by _id, otherwise try to find a document
+        // that has a string `id` field (useful when using seed/dummy data).
+        if (ObjectId.isValid(givenID)) {
+            const objectId = new ObjectId(givenID);
+            event = await eventsCollection.findOne({ _id: objectId });
+        }
+        if (!event) {
+            // Try fallback: maybe documents store a string `id` field (e.g. from dummy data)
+            event = await eventsCollection.findOne({ id: givenID });
+        }
         if(!event){
             return undefined;
         }
